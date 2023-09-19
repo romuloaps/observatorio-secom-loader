@@ -1,0 +1,22 @@
+{
+    "name": "processador-arquivos-secom",
+    "version": "1.0.0",
+    "type": "module",
+    "description": "Processa os arquivos CSV disponibilizados pelo site de Planejamento de mídia do SICOM",
+    "main": "index.js",
+    "scripts": {
+        "start:dev": "cross-env NODE_EXTRA_CA_CERTS=\"./resources/mcom-gov-br-chain.pem\" nodemon index.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Rômulo Augusto",
+    "license": "ISC",
+    "dependencies": {
+        "axios": "^1.5.0",
+        "cross-env": "^7.0.3",
+        "qs": "^6.11.2",
+        "windows-1252": "^3.0.4"
+    },
+    "devDependencies": {
+        "nodemon": "^3.0.1"
+    }
+}
