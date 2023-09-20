@@ -11,7 +11,6 @@
     "author": "Rômulo Augusto",
     "license": "ISC",
     "dependencies": {
-        "axios": "^1.5.0",
         "cross-env": "^7.0.3",
         "qs": "^6.11.2",
         "windows-1252": "^3.0.4"
