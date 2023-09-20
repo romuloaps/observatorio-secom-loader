@@ -2,12 +2,15 @@ import { SicomDataDownloader, MeiosDeComunicacao } from "./modules/download/sico
 
 const downloader = new SicomDataDownloader();
 
-for (let ano = 2023; ano <= 2023; ano++) {
+let params = [];
+for (let ano = 2016; ano <= 2023; ano++) {
     Object.values(MeiosDeComunicacao).forEach(async (meio) => {
-        let csv = downloader.download({
+        params.push({
             ano_acao: ano.toString(),
             meio: meio,
         });
-        console.log(csv);
     });
 }
+
+const files = await downloader.download(params);
+console.log(files);

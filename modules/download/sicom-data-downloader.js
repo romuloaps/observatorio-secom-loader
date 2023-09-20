@@ -9,23 +9,33 @@ export class SicomDataDownloader {
     }
 
     async download(params) {
-        try {
-            const response = await fetch(this.getFullURL(params), {
+        const promises = params.map((param) =>
+            fetch(this.getFullURL(param), {
                 method: "post",
-            });
-            console.log(response);
-            if (!response.ok) {
-                throw new DownloadError(`Erro ao requisitar a URL ${this.getFullURL(params)} - Status: ${response.status}, ${response.statusText}`);
-            }
+            })
+                .then((response) => response.arrayBuffer())
+                .then((buffer) => decode(Buffer.from(buffer)))
+        );
 
-            const data = await response.arrayBuffer();
-            return decode(Buffer.from(data));
-        } catch (err) {
-            if (err instanceof DownloadError) throw err;
-            else {
-                throw new Error(`Ocorreu um erro ao tentar realizar o download: ${err.message}`);
-            }
-        }
+        return Promise.all(promises);
+
+        // try {
+        //     const response = await fetch(this.getFullURL(params), {
+        //         method: "post",
+        //     });
+        //     console.log(response);
+        //     if (!response.ok) {
+        //         throw new DownloadError(`Erro ao requisitar a URL ${this.getFullURL(params)} - Status: ${response.status}, ${response.statusText}`);
+        //     }
+
+        //     const data = await response.arrayBuffer();
+        //     return decode(Buffer.from(data));
+        // } catch (err) {
+        //     if (err instanceof DownloadError) throw err;
+        //     else {
+        //         throw new Error(`Ocorreu um erro ao tentar realizar o download: ${err.message}`);
+        //     }
+        // }
     }
 
     getFullURL(params) {
