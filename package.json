@@ -12,6 +12,7 @@
     "license": "ISC",
     "dependencies": {
         "cross-env": "^7.0.3",
+        "csv-parser": "^3.0.0",
         "qs": "^6.11.2",
         "windows-1252": "^3.0.4"
     },
