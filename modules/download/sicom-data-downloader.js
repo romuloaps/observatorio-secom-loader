@@ -8,15 +8,20 @@ export class SicomDataDownloader {
     }
 
     async download(params) {
-        const promises = params.map((param) =>
-            fetch(this.getFullURL(param), {
-                method: "post",
+        return await Promise.all(
+            params.map((param) => {
+                console.log(`In: ${param.ano_acao} - ${param.meio}`);
+                return this.requestFile(param);
             })
-                .then((response) => response.arrayBuffer())
-                .then((buffer) => decode(Buffer.from(buffer)))
         );
+    }
 
-        return Promise.all(promises);
+    async requestFile(param) {
+        const response = await fetch(this.getFullURL(param), { method: "post" });
+        const buffer = await response.arrayBuffer();
+
+        console.log(`P: ${param.ano_acao} - ${param.meio}`);
+        return decode(Buffer.from(buffer), this.charset);
     }
 
     getFullURL(params) {
