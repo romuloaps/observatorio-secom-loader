@@ -3,10 +3,10 @@
     "version": "1.0.0",
     "type": "module",
     "description": "Processa os arquivos CSV disponibilizados pelo site de Planejamento de mídia do SICOM",
-    "main": "index.js",
+    "main": "src/index.js",
     "scripts": {
-        "start:dev": "cross-env NODE_EXTRA_CA_CERTS=\"./resources/mcom-gov-br-chain.pem\" nodemon index.js",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "start:dev": "cross-env NODE_EXTRA_CA_CERTS=\"./src/resources/mcom-gov-br-chain.pem\" nodemon src/index.js",
+        "test": "jest --watch"
     },
     "author": "Rômulo Augusto",
     "license": "ISC",
@@ -17,6 +17,8 @@
         "windows-1252": "^3.0.4"
     },
     "devDependencies": {
+        "@types/jest": "^29.5.5",
+        "jest": "^29.7.0",
         "nodemon": "^3.0.1"
     }
 }
