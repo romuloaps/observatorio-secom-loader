@@ -5,8 +5,8 @@
     "description": "Processa os arquivos CSV disponibilizados pelo site de Planejamento de mídia do SICOM",
     "main": "src/index.js",
     "scripts": {
-        "start:dev": "cross-env NODE_EXTRA_CA_CERTS=\"./src/resources/mcom-gov-br-chain.pem\" nodemon src/index.js",
-        "test": "jest --watch"
+        "start:dev": "NODE_EXTRA_CA_CERTS=\"./src/resources/mcom-gov-br-chain.pem\" nodemon src/index.js",
+        "test": "NODE_OPTIONS=--experimental-vm-modules npx jest"
     },
     "author": "Rômulo Augusto",
     "license": "ISC",
